@@ -1,0 +1,24 @@
+.screen-3 .container{
+    background-color: #fff;
+    margin: 20px;
+}
+.header{
+    background-color: #fff;
+    padding: 20px;
+    margin: 0;
+}
+.product{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #ccc;
+    padding: 20px 0
+}
+.order{
+    text-align: right;
+    padding: 10px 0;
+}
+.order button{
+    background-color: blueviolet;
+    color: #fff;
+    padding: 10px 20px;
+}

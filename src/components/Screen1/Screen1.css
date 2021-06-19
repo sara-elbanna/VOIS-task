@@ -1,0 +1,24 @@
+.Screen1 {
+    text-align: center;
+    background-color: rgba(219, 219, 219, 1);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: normal;
+    font-size: 16px;
+    color: white;
+  }
+  
+  .Screen1--dark-mode {
+    background-color: rgba(40, 44, 52, 1);
+  }
+  
+  .Screen1__start-button {
+    padding: 13px 30px;
+    text-align: center;
+    border-radius: 3px;
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(156, 42, 160, 1);;
+  }
