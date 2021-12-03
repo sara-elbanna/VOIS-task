@@ -1,9 +1,9 @@
 import React, { ReactElement } from "react";
 import { Dispatch } from "redux";
 import { Product } from "../../intrefaces/productsInterface";
-import { selectProduct, unSelectProduct } from "../../redux/actions";
 import { connect } from "react-redux";
-import { getPriceUnit } from "../../Utils";
+import { selectProduct, unSelectProduct } from "../../redux/products/productsActions";
+import PriceComponent from "./priceComponent";
 
 interface ProductItemStateProps {
     product: Product;
@@ -28,17 +28,17 @@ function mapDispatchToProps(dispatch: Dispatch): ProductItemDispatchProps {
 }
 
 function ProductItem(props: ProductItemProps): ReactElement {
-    console.log('ProductItem props', props.product)
     const onSelectProduct = (isSelceted: boolean) => {
         if( isSelceted ) props.selectProduct(props.product)
         else props.unSelectProduct(props.product)
     }
     return <div className='product-item'>
-        <input type='checkbox' data-testid ="product-checkbox" checked={props.product.isSelected == true} onChange={(e) => onSelectProduct(e.target.checked)}/>
+        <input type='checkbox' data-testid ={"product-checkbox-"+props.product.name} checked={props.product.isSelected == true} onChange={(e) => onSelectProduct(e.target.checked)}/>
         <div className='product-info'>
             <p>{props.product.name}</p>
             <p>{props.product.description}</p>
-            <h1>{props.product.price[0].amount} {getPriceUnit(props.product.price[0].billingFrequency)}</h1>
+            <PriceComponent priceArray={props.product.price}/>
+            
         </div>
     </div>
 }

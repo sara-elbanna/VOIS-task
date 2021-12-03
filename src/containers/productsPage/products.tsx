@@ -2,17 +2,18 @@ import React, { ReactElement, useEffect } from "react";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { GlobalState } from "../../redux/types";
-import { ProductCategories, Product } from "../../intrefaces/productsInterface";
+import { ProductCategory as ProductCategory, Product } from "../../intrefaces/productsInterface";
 import { getProducts } from "../../redux/selectors";
-import { fetchProducts } from "../../redux/actions";
-import ProductItem from "./ProductItem";
-import './Screen2.css'
+import ProductItem from "./productItem";
+import './products.css'
 import { Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
+import { fetchProducts } from "../../redux/products/productsActions";
+import Categories from "./categories";
 
 
 interface Screen2StateProps {
-  products: ProductCategories[];
+  products: ProductCategory[];
 }
 
 interface Screen2DispatchProps {
@@ -42,7 +43,7 @@ function mergeProps(stateProps: Screen2StateProps, dispatchProps: Screen2Dispatc
   }
 }
 
-function Screen2(props: Screen2Props): ReactElement {
+function ProductsPage(props: Screen2Props): ReactElement {
   const history = useHistory();
   useEffect(() => {
     if (props.products.length == 0) {
@@ -52,19 +53,14 @@ function Screen2(props: Screen2Props): ReactElement {
   return (
     <div className="screen-2">
       <h2 className='header'>Products</h2>
+      <p data-testid='productsBackBtn' style={{paddingLeft:20, textDecoration:'underline', cursor:'pointer'}} onClick={()=> history.push("/")}>{'<- Home'}</p>
+
       <div className='container'>
-        {props.products.map((category: ProductCategories) => {
-          return <div className='category' key={category.name}>
-            <h2>{category.name}</h2>
-            <div className='products'>
-              {category.products.map((product: Product) => {
-                return <ProductItem product={product} key={product.name} />
-              })}
-            </div>
-          </div>
+        {props.products.map((category: ProductCategory) => {
+          return <Categories category={category}/>
         })}
         <div className='basket'>
-          <Button onClick={()=> history.push("/basket")}>Basket</Button>
+          <Button data-testid='basketBtn' onClick={()=> history.push("/basket")}>Basket</Button>
         </div>
       </div>
 
@@ -72,4 +68,4 @@ function Screen2(props: Screen2Props): ReactElement {
   );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(Screen2);
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(ProductsPage);

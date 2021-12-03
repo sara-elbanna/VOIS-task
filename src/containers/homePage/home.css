@@ -1,4 +1,4 @@
-.Screen1 {
+.HomePage {
     text-align: center;
     background-color: rgba(219, 219, 219, 1);
     min-height: 100vh;
@@ -11,11 +11,11 @@
     color: white;
   }
   
-  .Screen1--dark-mode {
+  .homePage--dark-mode {
     background-color: rgba(40, 44, 52, 1);
   }
   
-  .Screen1__start-button {
+  .HomePage__start-button {
     padding: 13px 30px;
     text-align: center;
     border-radius: 3px;

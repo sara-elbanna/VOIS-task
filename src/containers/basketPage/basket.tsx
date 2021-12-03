@@ -1,20 +1,16 @@
 import React, { ReactElement } from "react";
-import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { GlobalState } from "../../redux/types";
-import { ProductCategories, Product } from "../../intrefaces/productsInterface";
-import { getProducts } from "../../redux/selectors";
-import './Screen3.css'
+import { Product } from "../../intrefaces/productsInterface";
+import { getSelectedProducts } from "../../redux/selectors";
+import './basket.css'
 import { Button } from "@material-ui/core";
 import { getPriceUnit } from "../../Utils";
 import { useHistory } from "react-router-dom";
 
 
 interface Screen3StateProps {
-  products: ProductCategories[];
-}
-
-interface Screen3DispatchProps {
+  selectedProducts:Product[]
 }
 
 interface Screen3Props extends Screen3StateProps {
@@ -22,32 +18,23 @@ interface Screen3Props extends Screen3StateProps {
 
 function mapStateToProps(state: GlobalState): Screen3StateProps {
   return {
-    products: getProducts(state)
+    selectedProducts: getSelectedProducts(state)
   }
 }
 
-function mapDispatchToProps(dispatch: Dispatch) {
-  return {
-  }
-}
-
-function mergeProps(stateProps: Screen3StateProps, dispatchProps: Screen3DispatchProps): Screen3Props {
+function mergeProps(stateProps: Screen3StateProps): Screen3Props {
   return {
     ...stateProps,
   }
 }
 
-function Screen3(props: Screen3Props): ReactElement {
+function BasketPage(props: Screen3Props): ReactElement {
   const history = useHistory();
-  let selectedProducts: Product[] = []
-  props.products.forEach((category: ProductCategories) => {
-    category.products.forEach((p: Product) => {
-      if (p.isSelected) selectedProducts.push(p)
-    })
-  })
+  let selectedProducts = props.selectedProducts
   return (
     <div className="screen-3">
-      <h2 className='header'>Basket</h2>
+      <h2  className='header'>Basket</h2>
+      <p data-testid='basketBackBtn' style={{paddingLeft:20, textDecoration:'underline', cursor:'pointer'}} onClick={()=> history.push("/products") }>{'<- Products'}</p>
       <div className='container'>
         {selectedProducts.length == 0 && <h1>Empty list</h1>}
         {selectedProducts.length > 0 && <div>
@@ -70,4 +57,4 @@ function Screen3(props: Screen3Props): ReactElement {
   );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(Screen3);
+export default connect(mapStateToProps, null, mergeProps)(BasketPage);

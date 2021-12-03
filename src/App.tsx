@@ -6,9 +6,9 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import Screen2 from './components/Screen2/Screen2';
-import Screen3 from './components/Screen3/Screen3';
-import Screen1 from './components/Screen1/Screen1';
+import ProductsPage from './containers/productsPage/products';
+import BasketPage from './containers/basketPage/basket';
+import HomePage from './containers/homePage/home';
 
 
 
@@ -18,9 +18,9 @@ function App():ReactElement {
   <Router>
       <div>
         <Switch>
-          <Route path="/products" component={Screen2} />
-          <Route path="/basket" component={Screen3} />
-          <Route path="/" component={Screen1} />
+          <Route path="/products" component={ProductsPage} />
+          <Route path="/basket" component={BasketPage} />
+          <Route path="/" component={HomePage} />
         </Switch>
       </div>
     </Router> 

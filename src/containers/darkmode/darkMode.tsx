@@ -1,10 +1,10 @@
 import React, {ReactElement} from "react";
 import {Dispatch} from "redux";
-import './DarkMode.css';
+import './darkMode.css'; 
 import {connect} from "react-redux";
 import {GlobalState} from "../../redux/types";
 import {getDarkMode} from "../../redux/selectors";
-import {setDarkMode} from "../../redux/actions";
+import {setDarkMode} from "../../redux/UI/uiActions";
 
 interface DarkModeStateProps {
   darkMode: boolean;

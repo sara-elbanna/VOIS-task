@@ -1,4 +1,5 @@
-interface Amount {
+
+export interface Price {
   amount: string,
   billingFrequency: string,
   periodStart: number
@@ -6,10 +7,10 @@ interface Amount {
 export interface Product {
   description: string,
   name: string,
-  price: Amount[],
+  price: Price[],
   isSelected:boolean
 }
-export interface ProductCategories {
+export interface ProductCategory {
   name: string,
   products: Product[]
 }

@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import './Screen1.css';
+import './home.css';
 
 import { connect } from "react-redux";
 import { Dispatch } from 'redux';
@@ -7,22 +7,22 @@ import { useHistory } from "react-router-dom";
 import { Button } from '@material-ui/core';
 import { getDarkMode } from '../../redux/selectors';
 import { GlobalState } from '../../redux/types';
-import { fetchProducts } from '../../redux/actions';
-import DarkMode from '../darkmode/DarkMode';
+import DarkMode from '../darkmode/darkMode';
+import { fetchProducts } from '../../redux/products/productsActions';
 
-interface Screen1StateProps {
+interface HomePageStateProps {
   darkMode: boolean;
 }
 
-interface Screen1DispatchProps {
+interface HomePageDispatchProps {
   fetchProducts: () => void;
 }
 
-interface Screen1Props extends Screen1StateProps{
+interface HomePageProps extends HomePageStateProps{
   fetchProducts:() => void
 }
 
-function mapStateToProps(state: GlobalState): Screen1StateProps {
+function mapStateToProps(state: GlobalState): HomePageStateProps {
   return {
     darkMode: getDarkMode(state)
   };
@@ -34,23 +34,23 @@ function mapDispatchToProps(dispatch: Dispatch) {
   }
 }
 
-function mergeProps(stateProps: Screen1StateProps, dispatchProps: Screen1DispatchProps): Screen1Props {
+function mergeProps(stateProps: HomePageStateProps, dispatchProps: HomePageDispatchProps): HomePageProps {
   return {
     ...stateProps,
     fetchProducts:():void =>{return dispatchProps.fetchProducts()}
   }
 }
 
-function Screen1(props: Screen1Props):ReactElement {
+function HomePage(props: HomePageProps):ReactElement {
   const history = useHistory();
   const onStartClick = ()=>{
     history.push("/products");
     props.fetchProducts()
   }
   return (
-    <div className={`Screen1 ${props.darkMode ? 'Screen1--dark-mode' : ''}`}>
+    <div className={`HomePage ${props.darkMode ? 'homePage--dark-mode' : ''}`}>
       <DarkMode />
-      <div className="Screen1__start-button">
+      <div className="HomePage__start-button">
         <Button onClick={onStartClick}>
           Start
         </Button>
@@ -59,4 +59,4 @@ function Screen1(props: Screen1Props):ReactElement {
   );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(Screen1);
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(HomePage);
