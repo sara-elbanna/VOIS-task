@@ -37,7 +37,7 @@ function mapDispatchToProps(dispatch: Dispatch) {
 function mergeProps(stateProps: HomePageStateProps, dispatchProps: HomePageDispatchProps): HomePageProps {
   return {
     ...stateProps,
-    fetchProducts:():void =>{return dispatchProps.fetchProducts()}
+    ...dispatchProps
   }
 }
 

@@ -1,6 +1,5 @@
 import React, { ReactElement } from "react";
 import { Price } from "../../intrefaces/productsInterface";
-import { connect } from "react-redux";
 import { getPriceUnit } from "../../Utils";
 
 interface PriceComponentProps {
@@ -15,4 +14,4 @@ function PriceComponent(props: PriceComponentProps): ReactElement {
     </div>
 }
 
-export default connect(null, null)(PriceComponent);
+export default PriceComponent;

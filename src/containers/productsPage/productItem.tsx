@@ -23,7 +23,6 @@ function mapDispatchToProps(dispatch: Dispatch): ProductItemDispatchProps {
     return {
         selectProduct: (product: Product) => dispatch(selectProduct(product)),
         unSelectProduct: (product: Product) => dispatch(unSelectProduct(product))
-
     }
 }
 

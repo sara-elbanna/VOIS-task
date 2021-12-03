@@ -39,7 +39,7 @@ function mapDispatchToProps(dispatch: Dispatch) {
 function mergeProps(stateProps: Screen2StateProps, dispatchProps: Screen2DispatchProps): Screen2Props {
   return {
     ...stateProps,
-    fetchProducts: (): void => { return dispatchProps.fetchProducts() }
+    ...dispatchProps 
   }
 }
 
